@@ -1,12 +1,14 @@
 import java.math.BigInteger
 
-class Encrypt: IEncrypt {
+class Encrypt : IEncrypt {
     override fun encrypt(message: BigInteger, e: BigInteger, n: BigInteger): BigInteger {
-        return message.modPow(e,n)
+        return message.modPow(e, n)
     }
+
     override fun decrypt(message: BigInteger, d: BigInteger, n: BigInteger): BigInteger {
-        return message.modPow(d,n)
+        return message.modPow(d, n)
     }
+
     override fun stringToCipheredString(string: String): BigInteger {
         val message = string.toUpperCase()
         var cipherString = ""
@@ -18,12 +20,13 @@ class Encrypt: IEncrypt {
         }
         return BigInteger(cipherString)
     }
-    override fun cipheredStringToString(message: BigInteger): String{
+
+    override fun cipheredStringToString(message: BigInteger): String {
         val cipherString = message.toString()
         var output = ""
         var i = 0
-        while (i < cipherString.length){
-            val char: Char = cipherString.substring(i,i+2).toInt().toChar()
+        while (i < cipherString.length) {
+            val char: Char = cipherString.substring(i, i + 2).toInt().toChar()
             output += char
             i += 2
         }
