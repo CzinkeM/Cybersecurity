@@ -14,6 +14,15 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test-junit"))
+
+}
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "MainKt"
+    }
+    configurations["compileClasspath"].forEach { file: File ->
+        from(zipTree(file.absoluteFile))
+    }
 }
 
 tasks.test {
